@@ -1,15 +1,66 @@
-*.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+# Built application files
+*.apk
+*.ap_
+*.dex
+*.class
+*.jar
+*.war
+*.ear
+
+# Files for native builds
+*.o
+*.so
+*.a
+*.lib
+
+# Android Studio specific files
+.idea/
+.gradle/
 local.properties
+*.iml
+
+# User-specific files
+*.hprof
+*.log
+
+# Android's generated files
+/build/
+*/build/
+bin/
+gen/
+out/
+target/
+
+# External native build files
+.cxx/
+.externalNativeBuild/
+
+# Gradle files
+.gradle/
+!gradle-wrapper.jar
+
+# Android Studio captures
+captures/
+
+# IntelliJ IDEA specific files
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Keystore files (never commit your keystore files to a repository)
+*.jks
+*.keystore
+
+# Gradle wrapper
+gradle-wrapper.jar
+
+# Android Studio (newer versions) build output
+*.iml
+.idea/
+build/
+captures/
