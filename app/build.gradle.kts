@@ -57,15 +57,32 @@ dependencies {
     implementation(project(":core-base"))
     implementation(project(":core-utils"))
 
+    // splash
+    implementation(libs.androidx.core.splashscreen)
+
+    // timber
     implementation (libs.timber)
+
+    // navigation
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.navigation.runtime.ktx)
+    implementation(libs.androidx.navigation.fragment.ktx)
 
     //Room
     implementation(libs.room.runtime)
     ksp(libs.room.compiler)
-
-    // optional - Kotlin Extensions and Coroutines support for Room
     implementation(libs.room.ktx)
-    implementation(libs.room.runtime)
+
+    // coroutines
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+
+    // Hilt
+    implementation (libs.hilt.android)
+    ksp  (libs.hilt.android.compiler)
+
+    // data Store
+    implementation(libs.androidx.datastore.preferences.core)
+    implementation(libs.androidx.datastore.preferences)
 }
