@@ -85,4 +85,7 @@ dependencies {
     // data Store
     implementation(libs.androidx.datastore.preferences.core)
     implementation(libs.androidx.datastore.preferences)
+
+    // multidex
+    implementation (libs.androidx.multidex)
 }

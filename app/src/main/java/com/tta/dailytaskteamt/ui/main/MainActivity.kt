@@ -4,6 +4,7 @@ import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import com.tta.core_base.BaseActivity
 import com.tta.dailytaskteamt.R
 import com.tta.dailytaskteamt.databinding.ActivityMainBinding
@@ -44,5 +45,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 binding.drawerLayout.closeDrawer(GravityCompat.START)
             }
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return (NavigationUI.navigateUp(navController, appBarConfiguration)
+                || super.onSupportNavigateUp())
     }
 }
