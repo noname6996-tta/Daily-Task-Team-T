@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("com.google.devtools.ksp")
+    id ("kotlin-kapt")
 }
 
 android {
@@ -36,6 +37,8 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        dataBinding = true
+        buildConfig = true
     }
 }
 
@@ -88,4 +91,10 @@ dependencies {
 
     // multidex
     implementation (libs.androidx.multidex)
+
+    // View model, lifecycle
+    implementation (libs.androidx.lifecycle.viewmodel.ktx.v270)
+    implementation (libs.androidx.lifecycle.livedata.ktx)
+    implementation (libs.androidx.fragment.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
 }

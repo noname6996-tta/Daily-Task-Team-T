@@ -1,4 +1,4 @@
-package com.tta.core_utils
+package com.tta.core_utils.uitls
 
 import android.os.SystemClock
 import timber.log.Timber
