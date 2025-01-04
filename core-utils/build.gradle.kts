@@ -45,4 +45,7 @@ dependencies {
 
     // Gson
     implementation (libs.gson)
+
+    // Permission
+    implementation (libs.dexter)
 }
