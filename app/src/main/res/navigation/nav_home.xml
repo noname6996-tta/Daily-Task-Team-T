@@ -3,22 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_home"
-    app:startDestination="@id/menu_icon">
+    app:startDestination="@+id/taskFragment">
 
     <fragment
-        android:id="@+id/menu_icon"
-        android:name="com.tta.dailytaskteamt.ui.menu.MenuFragment"
+        android:id="@+id/menuFragment">
+    </fragment>
+
+    <fragment
+        android:id="@+id/taskFragment"
+        android:name="com.tta.dailytaskteamt.ui.task.TaskFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu" />
 
     <fragment
-        android:id="@+id/nav_search"
+        android:id="@+id/calenderFragment"
         android:name="com.tta.dailytaskteamt.ui.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
 
     <fragment
-        android:id="@+id/nav_profile"
+        android:id="@+id/profileFragment"
         android:name="com.tta.dailytaskteamt.ui.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
