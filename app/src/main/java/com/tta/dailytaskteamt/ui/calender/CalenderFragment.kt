@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.tta.core_base.BaseFragment
-import com.tta.dailytaskteamt.databinding.FragmentHomeBinding
+import com.tta.dailytaskteamt.databinding.FragmentCalenderBinding
 
-class CalenderFragment : BaseFragment<FragmentHomeBinding>() {
+class CalenderFragment : BaseFragment<FragmentCalenderBinding>() {
     override var isTerminalBackKeyActive: Boolean = false
 
     companion object {
@@ -18,7 +18,7 @@ class CalenderFragment : BaseFragment<FragmentHomeBinding>() {
         }
     }
 
-    override fun getDataBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentHomeBinding {
-        return FragmentHomeBinding.inflate(inflater, container, false)
+    override fun getDataBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentCalenderBinding {
+        return FragmentCalenderBinding.inflate(inflater, container, false)
     }
 }
