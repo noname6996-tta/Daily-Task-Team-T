@@ -18,7 +18,7 @@ class BottomTabController {
     interface ActiveListener {
         fun onActive(currentSelectedTab: Int)
         fun onInactive(unselectedTab: Int)
-        fun onAdd(id: Int);
+        fun onAdd(id: Int)
     }
 
     /**
@@ -26,9 +26,10 @@ class BottomTabController {
      * fragmentViewHistory, inactiveHistory, activeHistory,....
      *
      * @param listViews : list các item.
+     * @param listViews size : tăng lên theo kiểu nếu là 4 tab thì 4 * 3 , 3 tab là 3 * 3
      */
     fun init(vararg listViews: View?) {
-        if (listViews.size != 12) throw RuntimeException("Danh sách View chuyền vào không đủ : inactiveA->activeA->inactiveB->activeB....")
+        if (listViews.size != 9) throw RuntimeException("Danh sách View chuyền vào không đủ : inactiveA->activeA->inactiveB->activeB....")
         for (i in 0 until listViews.size / 3) {
             mListBottomItemViews.add(
                 BottomItemView(

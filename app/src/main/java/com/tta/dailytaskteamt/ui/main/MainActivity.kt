@@ -1,97 +1,79 @@
 package com.tta.dailytaskteamt.ui.main
 
-import android.view.MenuItem
+import android.app.AlertDialog
+import android.os.Bundle
+import android.view.View
+import androidx.activity.addCallback
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.setupWithNavController
 import com.blankj.utilcode.util.ScreenUtils
-import com.blankj.utilcode.util.ToastUtils
-import com.google.android.material.navigation.NavigationBarView
 import com.tta.core_base.BaseActivity
 import com.tta.dailytaskteamt.R
 import com.tta.dailytaskteamt.databinding.ActivityMainBinding
+import com.tta.dailytaskteamt.databinding.LayoutFragmentMainBinding
+import com.tta.dailytaskteamt.ui.custom.BottomTabController
 import com.tta.dailytaskteamt.ui.nav_menu.NavMenuFragment
-import timber.log.Timber
+import com.tta.dailytaskteamt.utils.Constants
 
-class MainActivity : BaseActivity<ActivityMainBinding>() {
+class MainActivity : BaseActivity<ActivityMainBinding>(), BottomTabController.ActiveListener {
 
-    private lateinit var navController: NavController
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private var mNavMenuFragment: NavMenuFragment? = null
+    private var currentSelectedTab: Int = 0
+    private val mBottomTabController = BottomTabController()
 
     override fun getDataBinding(): ActivityMainBinding {
         return ActivityMainBinding.inflate(layoutInflater)
     }
 
-    override fun initView() {
-        super.initView()
-        initBottomNavigation()
+    override fun initView(savedInstanceState: Bundle?) {
+        super.initView(savedInstanceState)
+        initBottomNavigation(savedInstanceState)
         initNavMenu()
 
-        // Setup AppBarConfiguration với DrawerLayout
-        appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.taskFragment, R.id.calenderFragment, R.id.profileFragment),
-            binding.drawerLayout
-        )
+        onBackPressedDispatcher.addCallback(this) {
+            if (mustCloseNavigationMenu()) {
+                return@addCallback
+            }
+
+            // Hiển thị dialog xác nhận thoát ứng dụng
+            AlertDialog.Builder(this@MainActivity)
+                .setTitle("Thoát ứng dụng")
+                .setMessage("Bạn có chắc chắn muốn thoát không?")
+                .setPositiveButton("Có") { _, _ ->
+                    finish() // Thoát ứng dụng
+                }
+                .setNegativeButton("Không") { dialog, _ ->
+                    dialog.dismiss() // Đóng dialog, không thoát
+                }
+                .show()
+        }
     }
 
-    private fun initBottomNavigation() {
-        // Setup Navigation Controller
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.container) as NavHostFragment
-        navController = navHostFragment.navController
+    private fun initBottomNavigation(savedInstanceState: Bundle?) {
+        val layoutBottomMain = binding.bottomNavigation
+        val layoutFragmentMain = LayoutFragmentMainBinding.bind(binding.root)
 
-        val mNavigationItemSelected = object : NavigationBarView.OnItemSelectedListener {
-            override fun onNavigationItemSelected(item: MenuItem): Boolean {
-                Timber.d("MainActivity Clicked on: ${item.itemId}")
-                ToastUtils.showShort("Clicked on: ${item.itemId}")
-                when (item.itemId) {
-                    R.id.menuFragment -> {
-                        openNavigationMenu()
-                        return true
-                    }
-
-                    R.id.taskFragment -> {
-                        NavigationUI.onNavDestinationSelected(
-                            item,
-                            navController
-                        )
-                        return true
-                    }
-
-                    R.id.calenderFragment -> {
-                        NavigationUI.onNavDestinationSelected(
-                            item,
-                            navController
-                        )
-                        return true
-                    }
-
-                    R.id.profileFragment -> {
-                        NavigationUI.onNavDestinationSelected(
-                            item,
-                            navController
-                        )
-                        return true
-                    }
-
-                    else -> {
-                        return false
-                    }
-                }
+        if (savedInstanceState != null) {
+            currentSelectedTab = savedInstanceState.getInt(Constants.CURRENT_TAB_MAIN)
+            if (currentSelectedTab > 0) {
+                mBottomTabController.mCurrentSelectedTab = 0
             }
         }
 
-        binding.bottomNavigation.setupWithNavController(navController)
-        binding.bottomNavigation.apply {
-            setOnItemSelectedListener(mNavigationItemSelected)
-        }
-
-        // Setup bottom navigation
-        binding.bottomNavigation.setupWithNavController(navController)
+        mBottomTabController.init(
+            layoutFragmentMain.fragmentTabTask,
+            layoutBottomMain.tabTaskInactive,
+            layoutBottomMain.tabTaskActive,
+            layoutFragmentMain.fragmentTabCalendar,
+            layoutBottomMain.tabCalenderInactive,
+            layoutBottomMain.tabCalenderActive,
+            layoutFragmentMain.fragmentTabProfile,
+            layoutBottomMain.tabProfileInactive,
+            layoutBottomMain.tabProfileActive
+        )
+        mBottomTabController.initFragmentTab(supportFragmentManager)
+        mBottomTabController.selectTab(if (currentSelectedTab > 0) currentSelectedTab else BottomTabController.INDEX_TAB_TASK)
+        mBottomTabController.setActiveListener(this@MainActivity)
     }
 
     private fun initNavMenu() {
@@ -105,14 +87,46 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         supportFragmentManager.beginTransaction().apply {
             add(R.id.fr_nav_menu_container, mNavMenuFragment!!, "NavMenuFragment")
         }.commitNow()
+
+        binding.bottomNavigation.navMenu.setOnClickListener {
+            openNavigationMenu()
+        }
     }
 
-    fun openNavigationMenu() {
-        binding.drawerLayout.openDrawer(GravityCompat.START)
+    private fun mustCloseNavigationMenu(): Boolean {
+        if (binding.root.findViewById<DrawerLayout>(R.id.drawer_layout).isDrawerOpen(GravityCompat.START)) {
+            closeNavigationMenu()
+            return true
+        }
+        return false
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        return (NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp())
+    private fun openNavigationMenu() {
+        binding.root.findViewById<DrawerLayout>(R.id.drawer_layout).openDrawer(GravityCompat.START)
+    }
+
+    private fun closeNavigationMenu() {
+        binding.root.findViewById<DrawerLayout>(R.id.drawer_layout).closeDrawer(GravityCompat.START)
+    }
+
+    fun onBottomTabClick(v: View?) {
+        mBottomTabController.handleOnTabClick(v!!)
+    }
+
+    override fun onActive(currentSelectedTab: Int) {
+        this.currentSelectedTab = currentSelectedTab
+    }
+
+    override fun onInactive(unselectedTab: Int) {
+
+    }
+
+    override fun onAdd(id: Int) {
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mBottomTabController.destroy()
     }
 }
