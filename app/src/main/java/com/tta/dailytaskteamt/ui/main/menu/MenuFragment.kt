@@ -1,4 +1,4 @@
-package com.tta.dailytaskteamt.ui.menu
+package com.tta.dailytaskteamt.ui.main.menu
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,7 @@ import com.tta.core_base.BaseFragment
 import com.tta.core_utils.extension.toast
 import com.tta.core_utils.uitls.PermissionUtils
 import com.tta.dailytaskteamt.databinding.FragmentMenuBinding
-import com.tta.dailytaskteamt.ui.menu.adapter.TestAdapter
+import com.tta.dailytaskteamt.ui.main.menu.adapter.TestAdapter
 
 
 class MenuFragment(override var isTerminalBackKeyActive: Boolean = false) :

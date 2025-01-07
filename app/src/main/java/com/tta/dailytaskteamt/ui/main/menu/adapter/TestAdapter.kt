@@ -1,4 +1,4 @@
-package com.tta.dailytaskteamt.ui.menu.adapter
+package com.tta.dailytaskteamt.ui.main.menu.adapter
 
 import android.annotation.SuppressLint
 import androidx.databinding.ViewDataBinding

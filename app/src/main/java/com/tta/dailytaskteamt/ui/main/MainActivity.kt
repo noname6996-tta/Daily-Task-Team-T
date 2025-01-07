@@ -1,15 +1,18 @@
 package com.tta.dailytaskteamt.ui.main
 
-import androidx.core.view.GravityCompat
+import android.annotation.SuppressLint
+import android.view.LayoutInflater
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.tta.core_base.BaseActivity
 import com.tta.dailytaskteamt.R
 import com.tta.dailytaskteamt.databinding.ActivityMainBinding
+import com.tta.dailytaskteamt.databinding.CustomLayoutMenuBinding
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
@@ -20,6 +23,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         return ActivityMainBinding.inflate(layoutInflater)
     }
 
+    @SuppressLint("RestrictedApi")
     override fun initView() {
         super.initView()
         // Setup Navigation Controller
@@ -32,27 +36,19 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             binding.drawerLayout
         )
 
+        // Custom item menu of bottom nav
+        val bottomMenu = binding.bottomNavigation.getChildAt(0) as BottomNavigationMenuView
+        val itemMenu = bottomMenu.getChildAt(0) as BottomNavigationItemView
+        val customMenuBinding = CustomLayoutMenuBinding.inflate(LayoutInflater.from(this), bottomMenu, false)
+        itemMenu.addView(customMenuBinding.root)
+
         // Setup bottom navigation
         binding.bottomNavigation.setupWithNavController(navController)
 
-        // Handle Navigation Drawer item clicks
-//        binding.bottomNavigation.setOnNavigationItemSelectedListener { menuItem ->
-//            when (menuItem.itemId) {
-//                R.id.nav_home -> {
-//                    navController.navigate(R.id.nav_home)
-//                    true
-//                }
-//
-//                R.id.nav_settings -> {
-//                    navController.navigate(R.id.nav_settings)
-//                    true
-//                }
-//
-//                else -> false
-//            }.also {
-//                binding.drawerLayout.closeDrawer(GravityCompat.START)
-//            }
-//        }
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            val icon = if(destination.id == R.id.fragment_menu) R.drawable.ic_menu_checked else R.drawable.ic_menu_unchecked
+            customMenuBinding.iconMenu.setImageResource(icon)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
