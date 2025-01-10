@@ -6,8 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.tta.dailytaskteamt.R
 import com.tta.dailytaskteamt.ui.calender.CalenderFragment
-import com.tta.dailytaskteamt.ui.profile.ProfileFragment
-import com.tta.dailytaskteamt.ui.task.TaskFragment
+import com.tta.dailytaskteamt.ui.main.profile.ProfileFragment
 import timber.log.Timber
 
 class BottomTabController {
