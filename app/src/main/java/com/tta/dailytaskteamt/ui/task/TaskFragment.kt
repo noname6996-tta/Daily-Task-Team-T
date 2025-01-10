@@ -41,12 +41,5 @@ class TaskFragment : BaseFragment<FragmentTaskBinding>() {
         testAdapter.itemClickListener = { data, _ ->
             activity?.toast("Data: $data")
         }
-
-        // Demo request permission
-        activity?.let {
-            PermissionUtils.requestNotification(it) {
-                // Permission granted
-            }
-        }
     }
 }

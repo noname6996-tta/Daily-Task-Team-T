@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.blankj.utilcode.util.ScreenUtils
 import com.tta.core_base.BaseActivity
+import com.tta.core_utils.uitls.PermissionUtils
 import com.tta.dailytaskteamt.R
 import com.tta.dailytaskteamt.databinding.ActivityMainBinding
 import com.tta.dailytaskteamt.databinding.LayoutFragmentMainBinding
@@ -47,6 +48,17 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), BottomTabController.Ac
                 }
                 .show()
         }
+
+        // Request permission
+        PermissionUtils.requestNotification(
+            this,
+            granted = {
+                // permission POST_NOTIFICATION is granted, handle logic
+            },
+            denied = {
+                // handle logic when user denied permission
+            },
+        )
     }
 
     private fun initBottomNavigation(savedInstanceState: Bundle?) {
@@ -64,9 +76,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), BottomTabController.Ac
             layoutFragmentMain.fragmentTabTask,
             layoutBottomMain.tabTaskInactive,
             layoutBottomMain.tabTaskActive,
+
             layoutFragmentMain.fragmentTabCalendar,
             layoutBottomMain.tabCalenderInactive,
             layoutBottomMain.tabCalenderActive,
+
             layoutFragmentMain.fragmentTabProfile,
             layoutBottomMain.tabProfileInactive,
             layoutBottomMain.tabProfileActive
