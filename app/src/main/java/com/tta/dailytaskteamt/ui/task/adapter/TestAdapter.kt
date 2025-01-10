@@ -1,11 +1,11 @@
 package com.tta.dailytaskteamt.ui.task.adapter
-
 import android.annotation.SuppressLint
 import androidx.databinding.ViewDataBinding
 import com.tta.core_base.BaseAdapter
 import com.tta.dailytaskteamt.R
 import com.tta.dailytaskteamt.databinding.ItemTestAdapterBinding
-/** Base Adapter demo: how to using base adapter */
+
+/** Base Adapter demo: how to use base adapter */
 class TestAdapter(mList: ArrayList<String>): BaseAdapter<String>(mList) {
 
     override fun getLayoutId(): Int = R.layout.item_test_adapter
