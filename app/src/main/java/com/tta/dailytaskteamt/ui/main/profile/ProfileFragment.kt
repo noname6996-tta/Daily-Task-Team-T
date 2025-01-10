@@ -1,4 +1,4 @@
-package com.tta.dailytaskteamt.ui.profile
+package com.tta.dailytaskteamt.ui.main.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater

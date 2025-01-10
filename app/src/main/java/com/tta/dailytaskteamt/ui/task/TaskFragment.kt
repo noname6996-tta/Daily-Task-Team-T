@@ -1,13 +1,11 @@
-package com.tta.dailytaskteamt.ui.task
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.tta.core_base.BaseFragment
 import com.tta.core_utils.extension.toast
-import com.tta.core_utils.uitls.PermissionUtils
 import com.tta.dailytaskteamt.databinding.FragmentTaskBinding
 import com.tta.dailytaskteamt.ui.task.adapter.TestAdapter
+
 
 class TaskFragment : BaseFragment<FragmentTaskBinding>() {
     override var isTerminalBackKeyActive: Boolean = false
