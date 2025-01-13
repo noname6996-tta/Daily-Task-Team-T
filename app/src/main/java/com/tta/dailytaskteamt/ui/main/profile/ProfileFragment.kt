@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.tta.core_base.BaseFragment
 import com.tta.dailytaskteamt.databinding.FragmentProfileBinding
-import com.tta.dailytaskteamt.ui.calender.CalenderFragment
 
 class ProfileFragment(override var isTerminalBackKeyActive: Boolean = false) : BaseFragment<FragmentProfileBinding>() {
 

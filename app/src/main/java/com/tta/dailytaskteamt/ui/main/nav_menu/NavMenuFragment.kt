@@ -1,4 +1,4 @@
-package com.tta.dailytaskteamt.ui.nav_menu
+package com.tta.dailytaskteamt.ui.main.nav_menu
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

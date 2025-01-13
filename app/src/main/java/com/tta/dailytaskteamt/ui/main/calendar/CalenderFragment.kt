@@ -1,4 +1,4 @@
-package com.tta.dailytaskteamt.ui.calender
+package com.tta.dailytaskteamt.ui.main.calendar
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,15 +6,13 @@ import android.view.ViewGroup
 import com.tta.core_base.BaseFragment
 import com.tta.dailytaskteamt.databinding.FragmentCalenderBinding
 
-class CalenderFragment : BaseFragment<FragmentCalenderBinding>() {
-    override var isTerminalBackKeyActive: Boolean = false
-
+class CalenderFragment(override var isTerminalBackKeyActive: Boolean = false) : BaseFragment<FragmentCalenderBinding>() {
     companion object {
         fun newInstance(): CalenderFragment {
             val bundle = Bundle()
-            val profileFragment = CalenderFragment()
-            profileFragment.arguments = bundle
-            return profileFragment
+            val taskFragment = CalenderFragment()
+            taskFragment.arguments = bundle
+            return taskFragment
         }
     }
 

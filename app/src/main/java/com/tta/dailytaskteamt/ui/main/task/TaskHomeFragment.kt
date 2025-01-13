@@ -1,28 +1,23 @@
-import android.os.Bundle
+package com.tta.dailytaskteamt.ui.main.task
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.tta.core_base.BaseFragment
 import com.tta.core_utils.extension.toast
 import com.tta.dailytaskteamt.databinding.FragmentTaskBinding
+import com.tta.dailytaskteamt.databinding.FragmentTaskHomeBinding
 import com.tta.dailytaskteamt.ui.task.adapter.TestAdapter
 
 
-class TaskFragment : BaseFragment<FragmentTaskBinding>() {
-    override var isTerminalBackKeyActive: Boolean = false
-
+class TaskHomeFragment(override var isTerminalBackKeyActive: Boolean = false) : BaseFragment<FragmentTaskHomeBinding>() {
     private val testList = arrayListOf<String>()
     private lateinit var testAdapter: TestAdapter
-
-    override fun getDataBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-    ): FragmentTaskBinding {
-        return FragmentTaskBinding.inflate(inflater, container, false)
+    override fun getDataBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentTaskHomeBinding {
+        return FragmentTaskHomeBinding.inflate(inflater, container, false)
     }
 
     override fun initView() {
         super.initView()
-
         for (i in 0 until 30) {
             testList.add(i.toString())
         }
