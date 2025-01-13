@@ -1,3 +1,4 @@
+import android.animation.ValueAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -27,9 +28,17 @@ class TaskFragment : BaseFragment<FragmentTaskBinding>() {
             testList.add(i.toString())
         }
         testAdapter = TestAdapter(testList)
-        binding.rcv.adapter = testAdapter
+        binding.rcvInProgress.adapter = testAdapter
         testAdapter.itemClickListener = { data, _ ->
             activity?.toast("Data: $data")
         }
+        binding.circularProgress.setProgress(85f)
+        val animator = ValueAnimator.ofFloat(0f, 85f)
+        animator.duration = 3000 // Thời gian 1 giây
+        animator.addUpdateListener { animation ->
+            val progress = animation.animatedValue as Float
+            binding.circularProgress.setProgress(progress)
+        }
+        animator.start()
     }
 }
