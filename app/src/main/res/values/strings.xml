@@ -5,4 +5,10 @@
     <string name="mine">Mine</string>
     <string name="calender">Calender</string>
     <string name="profile">Profile</string>
+
+    <string name="title_btn_cancel">Cancel</string>
+    <string name="title_btn_confirm">Confirm</string>
+
+    <string name="title_post_notification_permission">Post Notification Permission</string>
+    <string name="msg_post_notification_permission">Daily Task App need post notification permission to handle notification? Do you still deny?</string>
 </resources>

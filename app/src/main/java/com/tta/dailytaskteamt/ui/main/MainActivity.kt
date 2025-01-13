@@ -15,6 +15,7 @@ import com.tta.dailytaskteamt.databinding.LayoutFragmentMainBinding
 import com.tta.dailytaskteamt.ui.custom.BottomTabController
 import com.tta.dailytaskteamt.ui.nav_menu.NavMenuFragment
 import com.tta.dailytaskteamt.utils.Constants
+import com.tta.dailytaskteamt.utils.DialogUtils
 
 class MainActivity : BaseActivity<ActivityMainBinding>(), BottomTabController.ActiveListener {
 
@@ -57,6 +58,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), BottomTabController.Ac
             },
             denied = {
                 // handle logic when user denied permission
+                DialogUtils.showConfirmDialog(
+                    context = this,
+                    title = getString(R.string.title_post_notification_permission),
+                    content = getString(R.string.msg_post_notification_permission)
+                ) {
+                    // ....
+                }.show()
             },
         )
     }
