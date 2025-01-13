@@ -21,6 +21,9 @@ import com.tta.core_utils.uitls.PermissionUtils
 import com.tta.dailytaskteamt.R
 import com.tta.dailytaskteamt.databinding.ActivityMainBinding
 import com.tta.dailytaskteamt.ui.main.nav_menu.NavMenuFragment
+import com.tta.dailytaskteamt.databinding.LayoutFragmentMainBinding
+import com.tta.dailytaskteamt.utils.Constants
+import com.tta.dailytaskteamt.utils.DialogUtils
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     private lateinit var drawerLayout: DrawerLayout
@@ -120,6 +123,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             },
             denied = {
                 // handle logic when user denied permission
+                DialogUtils.showConfirmDialog(
+                    context = this,
+                    title = getString(R.string.title_post_notification_permission),
+                    content = getString(R.string.msg_post_notification_permission)
+                ) {
+                    // ....
+                }.show()
             },
         )
     }
