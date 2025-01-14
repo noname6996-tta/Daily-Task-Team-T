@@ -1,30 +1,25 @@
 package com.tta.dailytaskteamt.ui.main.task
 
+import android.animation.ValueAnimator
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.tta.core_base.BaseFragment
-import com.tta.core_utils.extension.toast
-import com.tta.dailytaskteamt.databinding.FragmentTaskBinding
 import com.tta.dailytaskteamt.databinding.FragmentTaskHomeBinding
-import com.tta.dailytaskteamt.ui.task.adapter.TestAdapter
-
 
 class TaskHomeFragment(override var isTerminalBackKeyActive: Boolean = false) : BaseFragment<FragmentTaskHomeBinding>() {
-    private val testList = arrayListOf<String>()
-    private lateinit var testAdapter: TestAdapter
     override fun getDataBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentTaskHomeBinding {
         return FragmentTaskHomeBinding.inflate(inflater, container, false)
     }
 
     override fun initView() {
         super.initView()
-        for (i in 0 until 30) {
-            testList.add(i.toString())
+        binding.circularProgress.setProgress(85f)
+        val animator = ValueAnimator.ofFloat(0f, 85f)
+        animator.duration = 3000 // Thời gian 1 giây
+        animator.addUpdateListener { animation ->
+            val progress = animation.animatedValue as Float
+            binding.circularProgress.setProgress(progress)
         }
-        testAdapter = TestAdapter(testList)
-        binding.rcv.adapter = testAdapter
-        testAdapter.itemClickListener = { data, _ ->
-            activity?.toast("Data: $data")
-        }
+        animator.start()
     }
 }
