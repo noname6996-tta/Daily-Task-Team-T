@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="in_process_color">@android:color/holo_orange_dark</color>
+    <color name="to_do_color">@android:color/holo_blue_dark</color>
+    <color name="done_color">@android:color/holo_green_light</color>
+</resources>
