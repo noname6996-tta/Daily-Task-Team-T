@@ -17,7 +17,7 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
         _binding = getDataBinding()
         setContentView(binding.root)
         initViewModel()
-        initView()
+        initView(savedInstanceState)
         addEvent()
         addObservers()
         initData()
@@ -25,7 +25,7 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
 
     abstract fun getDataBinding(): T
     open fun initViewModel() {}
-    open fun initView() {}
+    open fun initView(savedInstanceState: Bundle?) {}
     open fun addEvent() {}
     open fun addObservers() {}
     open fun initData() {}

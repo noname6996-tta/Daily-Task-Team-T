@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/to_do_color" android:state_checked="true"/>
+    <item android:color="@color/gray_88" android:state_checked="false"/>
+
+    <item android:color="@color/color_home_selected" android:state_checked="true" />
+    <item android:color="@color/color_home_unselected" android:state_checked="false" />
+
+    <item android:color="@color/color_search_selected" android:state_checked="true" />
+    <item android:color="@color/color_search_unselected" android:state_checked="false" />
+
+    <item android:color="@color/color_profile_selected" android:state_checked="true" />
+    <item android:color="@color/color_profile_unselected" android:state_checked="false" />
+</selector>

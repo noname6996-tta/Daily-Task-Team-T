@@ -25,6 +25,7 @@ navigationRuntimeKtx = "2.8.5"
 navigationUiKtx = "2.8.5"
 room = "2.6.1"
 lifecycleRuntimeAndroid = "2.8.7"
+utilcode = "1.30.7"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -58,6 +59,7 @@ room-compiler = { group = "androidx.room", name = "room-compiler", version.ref =
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 androidx-lifecycle-runtime-android = { group = "androidx.lifecycle", name = "lifecycle-runtime-android", version.ref = "lifecycleRuntimeAndroid" }
+utilcode = { group = "com.blankj", name = "utilcode", version.ref = "utilcode" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

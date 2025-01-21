@@ -24,12 +24,16 @@ object TimeUtils {
         val min = (totalSec % 3600) / 60
         val sec = totalSec % 60
 
-        return if (isTakeHour) {
-            String.format("%02d:%02d:%02d", hour, min, sec)
-        } else {
-            if (hour > 0) {
+        return when {
+            isTakeHour -> {
                 String.format("%02d:%02d:%02d", hour, min, sec)
-            } else {
+            }
+
+            hour > 0 -> {
+                String.format("%02d:%02d:%02d", hour, min, sec)
+            }
+
+            else -> {
                 String.format("%02d:%02d", min, sec)
             }
         }
