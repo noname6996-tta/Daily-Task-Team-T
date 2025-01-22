@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tta.core_base.databinding.ItemLoadMoreBinding
 import com.tta.core_utils.extension.visible
 
+/**
+ * Must convert to binding data in xml to use this base adapter
+ * */
 abstract class BaseAdapter<T>(
     private val list: ArrayList<T>,
     private val isPaging: Boolean = false,
@@ -23,6 +26,7 @@ abstract class BaseAdapter<T>(
     private var currentPage = 0
     var page = 1
 
+    /** Use this lambda function when toggle item of recycle view*/
     var itemClickListener: ((T, Int) -> Unit)? = null
 
     abstract fun getLayoutId(): Int
@@ -33,6 +37,7 @@ abstract class BaseAdapter<T>(
 
     class LoadMoreHolder(val binding: ItemLoadMoreBinding) : RecyclerView.ViewHolder(binding.root)
 
+    /** check load more*/
     override fun getItemViewType(position: Int): Int {
         return if (list.getOrNull(position) != null) {
             typeBody
